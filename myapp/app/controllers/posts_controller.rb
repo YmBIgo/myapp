@@ -13,6 +13,7 @@ class PostsController < ApplicationController
   end
 
   def create
+     @post = Post.create(params.require(:post).permit(:name, :content, :place))
   end
 
   def edit
