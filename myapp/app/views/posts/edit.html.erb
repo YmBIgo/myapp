@@ -2,9 +2,10 @@
 <hr>
 <%= form_for @post do |f| %>
   <p>内容</p>
-  <%= f.text_area :content %>
+  <%= f.text_area :content, :class => "form-control my-form" %>
+  <br>
   <p>場所</p>
-  <%= f.text_field :place %>
+  <%= f.text_field :place, :class => "form-control my-form" %>
   <hr>
   <%= f.submit "変更する", :class => "btn btn-primary" %>
 <% end %>
