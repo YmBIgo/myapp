@@ -16,13 +16,16 @@ class PostsController < ApplicationController
   end
 
   def create
-     @post = Post.create(params.require(:post).permit(:content, :place, :user_id).merge(:user_id => current_user.id))
-     @user = User.find(@post.user_id)
+    redirect_to root_path
+    flash[:alert] = "新しい投稿はできません"
+     # @post = Post.create(params.require(:post).permit(:content, :place, :user_id).merge(:user_id => current_user.id))
+     # @user = User.find(@post.user_id)
   end
 
   def edit
     @post = Post.find(params[:id])
     if @post.user_id == current_user.id
+      flash[:notice] = "データの変更はできません"
     else
       redirect_to "/posts"
       flash[:alert] = "無効なユーザー"
@@ -33,7 +36,7 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @user = User.find(@post.user_id)
     if @post.user_id == current_user.id
-      @post.update(params.require(:post).permit(:content, :place))
+      # @post.update(params.require(:post).permit(:content, :place))
     else
       redirect_to "/posts"
       flash[:alert] = "無効なユーザー"
@@ -44,7 +47,8 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
     @user = User.find(@post.user_id)
     if @post.user_id == current_user.id
-      @post.destroy
+      # @post.destroy
+      flash[:notice] = "データの削除はできません"
     else
       redirect_to "/posts"
       flash[:alert] = "無効なユーザー"

@@ -6,6 +6,10 @@
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
 
-Post.create(:name => "山田太郎", :content => "春からSFC", :place => "新宿")
-Post.create(:name => "湘南花子", :content => "おはよう", :place => "藤沢")
-Post.create(:name => "犬", :content => "わんわん", :place => "皇居")
+user = User.new(:email => 'hogehoge@hoge.com', :password => 'hogehoge')
+user.save!
+user.update(:first_name => '太郎', :family_name => "山田", :self_introduction => "SFC3年です。宜しくお願いします！")
+if User.find(1) != nil
+  Post.create(:content => "やばい。このままでは遅刻", :place => "湘南台", :user_id => 1)
+  Post.create(:content => "七夕祭で炎上", :place => "藤沢", :user_id => 1)
+end
